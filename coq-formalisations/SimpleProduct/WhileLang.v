@@ -13,12 +13,8 @@ Open Scope Z_scope.
 Lemma cat_map_eq: forall {A} {B:eqType} (f1 f2:A->B) (l1:seq A) (l2 l3:seq B),
  map f1 l1 ++ l2 == map f2 l1 ++ l3 = (map f1 l1 == map f2 l1) && (l2==l3).
 Proof.
-move=> A B f1 f2 l1 l2 l3; apply/eq_boolP.
- elim: l1 => //=.
- move => x xs IH /eqP [E1 /eqP E2].
- move: {IH E2} (IH E2) => /andP [/eqP E2 E3].
- by apply/andP; split => //; rewrite E1 E2.
-by move => /andP [/eqP -> /eqP ->].
+move=> A B f1 f2 l1 l2 l3.
+by rewrite eqseq_cat // !size_map.
 Qed.
 
 (** Operations signature:
