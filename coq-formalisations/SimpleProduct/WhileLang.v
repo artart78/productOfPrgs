@@ -1,4 +1,4 @@
-Require Import ssreflect ssrfun ssrbool eqtype ssrnat seq tuple fintype.
+From mathcomp Require Import ssreflect ssrfun ssrbool eqtype ssrnat seq tuple fintype.
 
 Require Import ZArith zint.
 Require Export Setoid Relation_Definitions.

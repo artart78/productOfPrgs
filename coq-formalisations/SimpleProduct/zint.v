@@ -2,8 +2,8 @@ Require Import POrderedType.
 Require Import ZArith Zbool.
 
 (** Adapted from the infra.v library from CAD project *)
-Require Import ssreflect ssrbool eqtype ssrnat seq.
-Require Import Ssreflect.choice fintype finfun ssrfun bigop ssralg. (* orderedalg.*)
+From mathcomp Require Import ssreflect ssrbool eqtype ssrnat seq.
+From mathcomp Require Import choice fintype finfun ssrfun bigop ssralg. (* orderedalg.*)
 
 
 Set Implicit Arguments.
@@ -31,12 +31,12 @@ Local Open Scope ring_scope.
 Require Import BinPos.
 
 Definition eqp (p q : positive) : bool :=
-  match ( (Pos.compare_cont p q Eq))%positive with Eq => true | _ => false end.
+  match ( (Pos.compare_cont Eq p q))%positive with Eq => true | _ => false end.
 
 Lemma eqpP : Equality.axiom eqp.
 Proof.
 move=> p q; apply: (iffP  idP)=>[|<-]; last by rewrite /eqp Pcompare_refl.
-rewrite /eqp; case e: (Pos.compare_cont p q Eq)%positive=> // _; exact: Pcompare_Eq_eq.
+rewrite /eqp; case e: (Pos.compare_cont Eq p q)%positive=> // _; exact: Pcompare_Eq_eq.
 Qed.
 
 Canonical Structure eqp_Mixin := EqMixin eqpP.
